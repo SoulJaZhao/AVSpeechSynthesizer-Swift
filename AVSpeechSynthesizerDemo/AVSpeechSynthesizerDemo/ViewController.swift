@@ -27,9 +27,6 @@ class ViewController: UIViewController {
             var utterance:AVSpeechUtterance
             if #available(iOS 10.0, *) {
                 utterance = AVSpeechUtterance(attributedString: NSAttributedString.init(string: "我是共产主义接班人"))
-                
-                
-                speechSynthesizer.speak(utterance)
             } else {
                 // Fallback on earlier versions
                 utterance = AVSpeechUtterance(string: "我是共产主义接班人")
@@ -43,6 +40,9 @@ class ViewController: UIViewController {
             utterance.rate = 0.2
             //设置音量
             utterance.volume = 0.5
+            
+            //播报语音
+            speechSynthesizer.speak(utterance)
         }
     }
 
