@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     //MARK: 点击播放按钮
     @IBAction func onClickPlayBtn(_ sender: Any) {
         if speechSynthesizer.isSpeaking {
+            let alertView:UIAlertView = UIAlertView(title: "提示", message: "请等待播放完成再点击播放按钮", delegate: self, cancelButtonTitle: "确定")
+            alertView.show()
             return
         } else {
             var utterance:AVSpeechUtterance
