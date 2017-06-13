@@ -22,7 +22,16 @@ class ViewController: UIViewController {
         if speechSynthesizer.isSpeaking {
             return
         } else {
-            let utterance:AVSpeechUtterance = AVSpeechUtterance.init(attributedString: NSAttributedString.init(string: "我是共产主义接班人"))
+            var utterance:AVSpeechUtterance
+            if #available(iOS 10.0, *) {
+                utterance = AVSpeechUtterance(attributedString: NSAttributedString.init(string: "我是共产主义接班人"))
+                
+                
+                speechSynthesizer.speak(utterance)
+            } else {
+                // Fallback on earlier versions
+                utterance = AVSpeechUtterance(string: "我是共产主义接班人")
+            }
             //语音类型
             let voiceType:AVSpeechSynthesisVoice = AVSpeechSynthesisVoice.init(language: "zh-CN")!
             
@@ -32,8 +41,6 @@ class ViewController: UIViewController {
             utterance.rate = 0.2
             //设置音量
             utterance.volume = 0.5
-            
-            speechSynthesizer.speak(utterance)
         }
     }
 
